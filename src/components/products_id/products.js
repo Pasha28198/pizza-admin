@@ -235,7 +235,9 @@ const Dashboard = () => {
                             <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' ,padding: 10}}>
                                 <img width={200} src={`https://pizzavovaapi.herokuapp.com/${productInfo.img}`}/>
                                 <div style={{position: 'relative', marginTop: 10}}>
-                                <input className="inputFile" style={{position: 'absolute', width: '100%', height: '100%', opacity: 0}}  value={''} type="file"  onChange={(e)=>{
+                                <input
+                                    accept="image/png, image/jpeg"
+                                    className="inputFile" style={{position: 'absolute', width: '100%', height: '100%', opacity: 0}}  value={''} type="file"  onChange={(e)=>{
                                     onSubmit(e.target.files[0])
                                 }}/>
 
