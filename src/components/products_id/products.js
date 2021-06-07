@@ -167,7 +167,7 @@ const Dashboard = () => {
             method: "post",
             url: `/products/choise`,
             data:   {
-                product: params.id,
+                productId: params.id,
                 mass: mass,
                 type: type,
                 price: price
@@ -175,7 +175,7 @@ const Dashboard = () => {
         })
             .then((response) => {
                 console.log(response);
-                setMessage("Coupon created successfully");
+                setMessage("created successfully");
                 setOpenCreateChoise(true)
                 getProductsId()
             })
@@ -188,11 +188,69 @@ const Dashboard = () => {
             setMessage(null);
         }, 3000);
     };
+
+    const deleteChoise = (choiseId) => {
+        axios({
+            method: "delete",
+            url: `/products/choise`,
+            data: {
+                id: choiseId,
+            },
+        })
+            .then(() => {
+                getProductsId()
+            })
+            .catch((error) => {
+            });
+    };
+
+    const postImg = (data) => {
+        axios({
+            method: "post",
+            url: `/products/image`,
+            data ,
+        })
+            .then(() => {
+                getProductsId()
+            })
+            .catch((error) => {
+            });
+    };
+
+
+
+     const onSubmit = async (file) => {
+         let data = new FormData()
+         data.append('photo', file)
+         data.append('productId', params.id)
+
+         await postImg(data)
+     }
     return (
         <div className="mt-3">
             <Row>
                 <Col sm="12">
                     <Accordion>
+                        <Card>
+                            <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' ,padding: 10}}>
+                                <img width={200} src={`https://pizzavovaapi.herokuapp.com/${productInfo.img}`}/>
+                                <div style={{position: 'relative', marginTop: 10}}>
+                                <input className="inputFile" style={{position: 'absolute', width: '100%', height: '100%', opacity: 0}}  value={''} type="file"  onChange={(e)=>{
+                                    onSubmit(e.target.files[0])
+                                }}/>
+
+                                <button
+
+                                    className="btn btn-success "
+                                    type="button"
+                                    
+
+                                >
+                                    Edit
+                                </button>
+                                </div>
+                            </div>
+                        </Card>
                         <Card>
                             <CardHeader>
                                 <div
@@ -205,6 +263,7 @@ const Dashboard = () => {
                                         <h5>{productInfo.title}</h5>
 
                                         <h5>{productInfo.description} </h5>
+
                                     </div>
                                     <button
                                         className="btn btn-success m-r-10"
@@ -291,7 +350,7 @@ const Dashboard = () => {
                                         className="btn btn-danger"
                                         type="button"
                                         onClick={() => {
-                                            deleteIngredient({ingredientId: item._id})
+                                            deleteChoise(item._id)
                                         }}
                                     >
                                         Delete
@@ -299,8 +358,11 @@ const Dashboard = () => {
                                 </div>
                             })}
 
+
+
                         </Card>
                     </Accordion>
+
 
 
                 </Col>

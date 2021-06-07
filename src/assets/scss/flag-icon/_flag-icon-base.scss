@@ -4,6 +4,15 @@
   background-repeat: no-repeat;
 }
 
+.inputFile + label{
+  display: none;
+}
+
+.inputFile + button{
+
+  background: red;
+}
+
 .flag-icon {
   @extend .flag-icon-background;
   position: relative;

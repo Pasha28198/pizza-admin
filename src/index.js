@@ -17,6 +17,7 @@ import Dashboard from './components/dashboard/dashboard';
 import Coupons from './components/coupons/coupons';
 import Ingredients from './components/ingredients/ingredients';
 import Products from './components/products/products';
+import Orders from './components/orders/orders';
 import ProductsId from './components/products_id/products';
 import Login from './components/login';
 import Logout from './components/logout';
@@ -46,6 +47,7 @@ function Root() {
                             <PrivateRoute exact path="/" component={withLayout(Dashboard)}/>
                             <PrivateRoute exact path="/categories" component={withLayout(Coupons)}/>
                             <PrivateRoute exact path="/products" component={withLayout(Products)}/>
+                            <PrivateRoute exact path="/orders" component={withLayout(Orders)}/>
                             <PrivateRoute exact path="/products/:id" component={withLayout(ProductsId)}/>
                             <PrivateRoute exact path="/choise" component={withLayout(Coupons)}/>
                             <PrivateRoute exact path="/ingredients" component={withLayout(Ingredients)}/>
