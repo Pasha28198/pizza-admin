@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const token = localStorage.getItem('accessToken')
 const instance  = axios.create({
-  baseURL: 'https://pizzavovaapi.herokuapp.com/',
+  baseURL: 'http://159.89.5.85/api/',
   // headers: {'Authorization': `${token}`}
 });
 
