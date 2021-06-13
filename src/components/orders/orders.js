@@ -126,6 +126,7 @@ const Dashboard = () => {
                           <th>User info</th>
                           <th>Products</th>
                           <th>Price</th>
+                          <th>Delivery time</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -155,6 +156,8 @@ const Dashboard = () => {
                                 </div>
                             })} </td>
                             <th>{item.price}</th>
+                            <th><div>Day: {item?.delivery_time?.day}</div>
+                              <div>Time: {item?.delivery_time?.time}</div></th>
                             <td>
                               <Button onClick={() => {}}>
                                 Delete
