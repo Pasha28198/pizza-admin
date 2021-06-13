@@ -35,6 +35,7 @@ const Dashboard = () => {
 
     const [name, setName] = useState([]);
     const [price, setPrice] = useState([]);
+    const [mass, setMass] = useState([]);
     useEffect(() => {
         getIngredients()
     }, [])
@@ -62,7 +63,8 @@ const Dashboard = () => {
             url: `/products/ingredients`,
             data: {
                 name: name,
-                price: price
+                price: price,
+                mass: mass
             },
         })
             .then((response) => {
@@ -181,6 +183,14 @@ const Dashboard = () => {
                                     value={price}
                                     onChange={(e) => {
                                         setPrice(e.target.value);
+                                    }}
+                                />
+                                <Input
+                                    style={{marginTop: 10}}
+                                    placeholder="Mass"
+                                    value={mass}
+                                    onChange={(e) => {
+                                        setMass(e.target.value);
                                     }}
                                 />
 

@@ -66,60 +66,11 @@ const Dashboard = () => {
         });
   };
 
-  const getCouponse = () => {
-    return axios({
-      method: "get",
-      url: "/products",
-    })
-      .then((response) => {
-        console.log(response)
-        setOrders(response && response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setMessage("Oops! Can not connect to the database. Try again.");
-      });
-  };
-
-  const getCategory = () => {
-    return axios({
-      method: "get",
-      url: "/products/categories",
-    })
-        .then((response) => {
-          console.log(response)
-          setCategories(response && response.data);
-          setLoading(false);
-        })
-        .catch((error) => {
-          setMessage("Oops! Can not connect to the database. Try again.");
-        });
-  };
-
-
-
-  const deleteCoupon = (id) => {
-    console.log(id);
-    return axios({
-      method: "post",
-      url: "/admin/deleteCoupon",
-      data: { id },
-    })
-      .then((response) => {
-        getCouponse();
-        setLoading(false);
-      })
-      .catch((error) => {
-        setMessage("Oops! Can not connect to the database. Try again.");
-      });
-  };
-
   useEffect(() => {
     const query = new URLSearchParams(location.search);
     setLoading(true);
     getOrders()
-    getCouponse();
-    getCategory()
+
     setTimeout(() => {
       setMessage(null);
     }, 3000);
@@ -142,69 +93,11 @@ const Dashboard = () => {
   const onCloseCreateChoiseModal = () => {
     setOpenCreateChoise(false);
   };
-  console.log(productId)
-  const createCoupon = (status) => {
-    setOpen(false);
-    setMessage("Updating order status ...");
-
-    axios({
-      method: "post",
-      url: `/products`,
-      data:   {
-
-        title: couponeCode,
-        description: description,
-        categoryId: categoryId
-  },
-    })
-      .then((response) => {
-        console.log(response);
-        setMessage("Coupon created successfully");
-        setOpenCreateChoise(true)
-        setProductId(response.data._id)
-        getCouponse();
-      })
-      .catch((error) => {
-        console.log(error);
-        setMessage("Oops! Error occured. Try again.");
-      });
-
-    setTimeout(() => {
-      setMessage(null);
-    }, 3000);
-  };
+  console.log(order)
 
 
 
-  const createChoise = (status) => {
-    setOpen(false);
-    setMessage("Updating order status ...");
 
-    axios({
-      method: "post",
-      url: `/products/choise`,
-      data:   {
-        product: productId,
-        mass: mass,
-        type: type,
-        price: price
-      },
-    })
-        .then((response) => {
-          console.log(response);
-          setMessage("Coupon created successfully");
-          setOpenCreateChoise(true)
-          getCouponse();
-        })
-        .catch((error) => {
-          console.log(error);
-          setMessage("Oops! Error occured. Try again.");
-        });
-
-    setTimeout(() => {
-      setMessage(null);
-    }, 3000);
-  };
 
   return (
     <div className="mt-3">
@@ -225,23 +118,45 @@ const Dashboard = () => {
               </CardHeader>
               <CardBody>
                 <div className="default-according" id="accordionclose">
-                  {orders.length > 0 ? (
+                  {order?.length > 0 ? (
                     <Table>
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>Product name</th>
+                          <th>User info</th>
+                          <th>Products</th>
+                          <th>Price</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {orders.map((item, dx) => (
+                        {order.map((item, dx) => (
                           <tr key={item._id}>
                             <td> {++dx} </td>
-                            <td onClick={()=>history.push(`/products/${item._id}`)}> {item.title} </td>
+                            <td onClick={()=>history.push(`/products/${item._id}`)}> <div>Name : {item.user.name} </div>
+                              <div>Phone: {item.user.phone} </div>
+                               <h5 style={{marginTop: 10}}>Address:</h5>
+                                <div>
+                                  <div>Сity: {item.address.city}</div>
+                                  <div>Street: {item.address.street}</div>
+                                  <div>House: {item.address.house}</div>
+                                  <div>Entrance: {item.address.entrance}</div>
+                                  <div> Apartment: {item.address.apartment}</div>
 
+                                  <div> Comment: {item.address.comment}</div>
+
+                                </div>
+                            </td>
+                            <td> {item?.products.map((item)=>{
+                                return  <div style={{border: '1px solid black'}}><div>{item.choise.type}</div>
+                                  <div>{item.ingredients.map((item)=>{
+                                    return <div>{item.name}</div>
+                                  })}</div>
+                                </div>
+                            })} </td>
+                            <th>{item.price}</th>
                             <td>
-                              <Button onClick={() => deleteCoupon(item._id)}>
+                              <Button onClick={() => {}}>
                                 Delete
                               </Button>
                             </td>
@@ -299,7 +214,8 @@ const Dashboard = () => {
                   <button
                     className="btn btn-success m-r-10"
                     type="button"
-                    onClick={() => createCoupon()}
+                    onClick={() => {
+                    }}
                   >
                     Create
                   </button>
@@ -347,7 +263,9 @@ const Dashboard = () => {
                   <button
                       className="btn btn-success m-r-10"
                       type="button"
-                      onClick={() => createChoise()}
+                      onClick={() => {
+
+                      }}
                   >
                     Create
                   </button>
