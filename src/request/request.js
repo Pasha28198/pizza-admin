@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const token = localStorage.getItem('accessToken')
 const instance  = axios.create({
-  baseURL: 'http://159.89.5.85/api/',
+  baseURL: 'https://whiteboxpizza.com.ua/api/',
   // headers: {'Authorization': `${token}`}
 });
 

@@ -233,7 +233,7 @@ const Dashboard = () => {
                     <Accordion>
                         <Card>
                             <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' ,padding: 10}}>
-                                <img width={200} src={`http://159.89.5.85/api/${productInfo.img}`}/>
+                                <img width={200} src={`https://whiteboxpizza.com.ua/api/${productInfo.img}`}/>
                                 <div style={{position: 'relative', marginTop: 10}}>
                                 <input
                                     accept="image/png, image/jpeg"
