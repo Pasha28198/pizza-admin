@@ -27,7 +27,7 @@ const Logins = ({history}) => {
 
             axios({
               method: 'post',
-              url: `/users/login`,
+              url: `/auth/login`,
               data: { username: email, password }
             }).then(response => {
                 console.log(response.data);
