@@ -28,9 +28,6 @@ export const MENUITEMS = [
         title: 'Ingredients', icon: Percent, type: 'link', path: '/ingredients', active: true
     },
     {
-        title: 'Orders', icon: Percent, type: 'link', path: '/orders', active: true
-    },
-    {
         title: 'Change Password', icon: Lock, type: 'link', path: '/change-password', active: true
     },
     {

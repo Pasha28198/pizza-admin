@@ -3,9 +3,7 @@ import {useHistory, useLocation} from "react-router-dom";
 
 import { Accordion } from "react-bootstrap";
 import axios from "../../request/request";
-import rawAxios from "axios";
 import Modal from "react-responsive-modal";
-import UpdateIcon from "../../assets/images/update.png";
 import Notification from "../common/notification/notification";
 
 import {
@@ -24,7 +22,6 @@ import {
 
 const Dashboard = () => {
   const history = useHistory()
-  const [orders, setOrders] = useState([]);
 
   const [categories, setCategories] = useState([]);
   const [couponeCode, setCouponeCode] = useState("");
@@ -34,8 +31,6 @@ const Dashboard = () => {
   const [type, setType] = useState("");
   const [price, setPrice] = useState("");
 
-  const [material, setMaterial] = useState("posters");
-  const [productId, setProductId] = useState('');
   const [categoryId, setCategoryId] = useState('');
 
   const [loading, setLoading] = useState(false);
@@ -45,13 +40,10 @@ const Dashboard = () => {
   const [orderId, setOrderId] = useState(null);
   const [index, setIndex] = useState(0);
   const [message, setMessage] = useState(null);
-  const [loaderItem, setLoaderItem] = useState("none");
 
   const location = useLocation();
-  // const profileImage = localStorage.getItem('profileImage')
   const [order, setOrder] = useState(null);
   const getOrders = () => {
-    console.log('LOAD')
     return axios({
       method: "get",
       url: "/order",

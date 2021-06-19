@@ -44,10 +44,9 @@ function Root() {
                 <BrowserRouter basename={'/'}>
                     <ScrollContext>
                         <Switch>
-                            <PrivateRoute exact path="/" component={withLayout(Dashboard)}/>
+                            <PrivateRoute exact path="/" component={withLayout(Orders)}/>
                             <PrivateRoute exact path="/categories" component={withLayout(Coupons)}/>
                             <PrivateRoute exact path="/products" component={withLayout(Products)}/>
-                            <PrivateRoute exact path="/orders" component={withLayout(Orders)}/>
                             <PrivateRoute exact path="/products/:id" component={withLayout(ProductsId)}/>
                             <PrivateRoute exact path="/choise" component={withLayout(Coupons)}/>
                             <PrivateRoute exact path="/ingredients" component={withLayout(Ingredients)}/>
