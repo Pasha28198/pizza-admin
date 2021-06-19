@@ -17,7 +17,6 @@ import {
 
 const Dashboard = () => {
     const params = useParams();
-    console.log(params)
     const [productInfo, setProductInfo] = useState([]);
     const [ingredients, setIngredients] = useState([]);
 
@@ -33,7 +32,6 @@ const Dashboard = () => {
             url: `/products/${params.id}`,
         })
             .then((response) => {
-                console.log(response)
                 setProductInfo(response && response.data);
                 setTitle(response.data.title)
                 setDescription(response.data.description)
@@ -50,7 +48,6 @@ const Dashboard = () => {
             url: `/products/ingredients`,
         })
             .then((response) => {
-                console.log(response)
                 setIngredients(response && response.data);
 
             })
@@ -120,12 +117,10 @@ const Dashboard = () => {
             },
         })
             .then((response) => {
-                console.log(response);
                 setMessage("Coupon created successfully");
                 getProductsId()
             })
             .catch((error) => {
-                console.log(error);
                 setMessage("Oops! Error occured. Try again.");
             });
 
@@ -143,7 +138,6 @@ const Dashboard = () => {
             url: "/products/categories",
         })
             .then((response) => {
-                console.log(response)
                 setCategories(response && response.data);
 
             })
@@ -174,13 +168,11 @@ const Dashboard = () => {
             },
         })
             .then((response) => {
-                console.log(response);
                 setMessage("created successfully");
                 setOpenCreateChoise(true)
                 getProductsId()
             })
             .catch((error) => {
-                console.log(error);
                 setMessage("Oops! Error occured. Try again.");
             });
 
@@ -377,7 +369,6 @@ const Dashboard = () => {
 
                                 <Input
                                     onChange={(e) => {
-                                        console.log(e.target.value)
                                         setIngredientId(e.target.value);
                                     }}
                                     value={ingredientId}

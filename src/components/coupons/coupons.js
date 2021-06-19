@@ -44,7 +44,6 @@ const Dashboard = () => {
       url: "/products/categories",
     })
       .then((response) => {
-        console.log(response)
         setOrders(response && response.data);
         setLoading(false);
       })
@@ -54,7 +53,6 @@ const Dashboard = () => {
   };
 
   const deleteCoupon = (id) => {
-    console.log(id);
     return axios({
       method: "post",
       url: "/admin/deleteCoupon",
@@ -106,12 +104,10 @@ const Dashboard = () => {
       },
     })
       .then((response) => {
-        console.log(response);
         setMessage("Coupon created successfully");
         getCouponse();
       })
       .catch((error) => {
-        console.log(error);
         setMessage("Oops! Error occured. Try again.");
       });
 

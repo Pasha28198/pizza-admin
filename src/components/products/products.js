@@ -56,7 +56,6 @@ const Dashboard = () => {
       url: "/products",
     })
       .then((response) => {
-        console.log(response)
         setOrders(response && response.data);
         setLoading(false);
       })

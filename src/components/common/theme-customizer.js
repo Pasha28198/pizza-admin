@@ -155,9 +155,6 @@ const ThemeCustomizer = () => {
         localStorage.setItem('wrapper', wrapper);
         localStorage.setItem('bodyWrapper', bodyWrapper);
 
-        console.log("sidebar_type", sidebar_type);
-
-
         window.location.reload();
     }
 

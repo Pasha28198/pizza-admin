@@ -56,7 +56,6 @@ const Dashboard = () => {
   useEffect(() => {
     const query = new URLSearchParams(location.search);
     const token = query.get("token");
-    console.log(token);
     setLoading(true);
     if (token) {
       getOrderAll(token);
@@ -113,7 +112,6 @@ const Dashboard = () => {
   };
 
   const onOpenModalDeleteOrder = (orderId) => {
-    console.log(orderId);
     setDeleteOrderId(orderId);
     setOpenModalDeleteOrder(true);
   };
@@ -132,12 +130,10 @@ const Dashboard = () => {
       data: { status: status },
     })
       .then((response) => {
-        console.log(response);
         orders[index].status = status;
         setMessage("Order status updated successfully");
       })
       .catch((error) => {
-        console.log(error);
         setMessage("Oops! Error occured. Try again.");
       });
 

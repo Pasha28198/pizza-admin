@@ -91,7 +91,6 @@ const ChangePassword = ({
         'Content-Type': 'application/json'
       }
     }).then(({ status, data = {} }) => {
-      console.log(status, data);
       if (status === 200) {
         setSuccessMsg(data.msg);
         setValues(defaultValues);
@@ -101,8 +100,6 @@ const ChangePassword = ({
 
       setLoader(false);
     }).catch(error => {
-      console.log(error);
-      console.log(error.response);
       let errorMessage = error.message;
       if (error.response && error.response.data) {
         const result = error.response.data || {};

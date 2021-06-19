@@ -45,7 +45,6 @@ const Dashboard = () => {
             url: `/products/ingredients`,
         })
             .then((response) => {
-                console.log(response)
                 setIngredients(response && response.data);
 
             })
@@ -68,12 +67,10 @@ const Dashboard = () => {
             },
         })
             .then((response) => {
-                console.log(response);
                 setMessage("Coupon created successfully");
                 getIngredients();
             })
             .catch((error) => {
-                console.log(error);
                 setMessage("Oops! Error occured. Try again.");
             });
 

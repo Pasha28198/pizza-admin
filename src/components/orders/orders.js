@@ -49,7 +49,6 @@ const Dashboard = () => {
       url: "/order",
     })
         .then((response) => {
-          console.log(response)
           setOrder(response && response.data);
           setLoading(false);
         })
@@ -85,7 +84,6 @@ const Dashboard = () => {
   const onCloseCreateChoiseModal = () => {
     setOpenCreateChoise(false);
   };
-  console.log(order)
 
 
 

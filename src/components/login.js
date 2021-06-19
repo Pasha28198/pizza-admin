@@ -30,16 +30,11 @@ const Logins = ({history}) => {
               url: `/auth/login`,
               data: { username: email, password }
             }).then(response => {
-                console.log(response.data);
-                // if (response.data.user.role !== 'admin') {
-                //     setMessage("Oops! Only admin can access this page.");
-                // } else {
                 localStorage.setItem('accessToken', response.data.access_token);
 
                 setMessage("Authentication successful");
                 history.push(`/?token=${response.data.token}`);
-                // }
-                
+
                 setTimeout(() => {
                   setMessage(null);
                 }, 3000);
