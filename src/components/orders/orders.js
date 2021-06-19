@@ -113,15 +113,16 @@ const Dashboard = () => {
                       <thead>
                         <tr>
                           <th>#</th>
+
                           <th>User info</th>
-                          <th>Products</th>
+
                           <th>Price</th>
                           <th>Delivery time</th>
-                          <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
                         {order.map((item, dx) => (
+                            <>
                           <tr key={item._id}>
                             <td> {++dx} </td>
                             <td onClick={()=>history.push(`/products/${item._id}`)}> <div>Name : {item.user.name} </div>
@@ -138,22 +139,28 @@ const Dashboard = () => {
 
                                 </div>
                             </td>
-                            <td> {item?.products.map((item)=>{
-                                return  <div style={{border: '1px solid black'}}><div>{item.choise.type}</div>
-                                  <div>{item.ingredients.map((item)=>{
-                                    return <div>{item.name}</div>
-                                  })}</div>
-                                </div>
-                            })} </td>
+
                             <th>{item.price}</th>
                             <th><div>Day: {item?.delivery_time?.day}</div>
                               <div>Time: {item?.delivery_time?.time}</div></th>
-                            <td>
-                              <Button onClick={() => {}}>
-                                Delete
-                              </Button>
-                            </td>
+
                           </tr>
+                          <div>{item?.products.map((item)=>{
+                          return  <div style={{
+                            background: '#F3F3F3',
+                            borderRadius: 12,
+                            padding: '5px 5px 5px 15px',
+                            marginBottom: 10
+                          }}>
+                            <div style={{display: 'flex', alignItems: 'center'}}><div >Products:</div> <b style={{fontSize: 16}}>{item.choise.type}</b></div>
+
+                            <div style={{display: 'flex', alignItems: 'center'}}><div >Ingredients:</div>{item.ingredients.map((item)=>{
+                              return <span> {item.name},</span>
+                            })}</div>
+
+                          </div>
+                        })}</div>
+                            </>
                         ))}
                       </tbody>
                     </Table>

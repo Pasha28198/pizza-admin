@@ -44,7 +44,7 @@ function Root() {
                             <PrivateRoute exact path="/products/:id" component={withLayout(ProductsId)}/>
                             <PrivateRoute exact path="/choise" component={withLayout(Coupons)}/>
                             <PrivateRoute exact path="/ingredients" component={withLayout(Ingredients)}/>
-                            <PrivateRoute exact path="/change-password" component={withLayout(changePassword)}/>
+                            {/*<PrivateRoute exact path="/change-password" component={withLayout(changePassword)}/>*/}
 
                             <Route exact path='/login' component={Login}/>
                             <Route exact path='/logout' component={Logout}/>

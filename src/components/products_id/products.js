@@ -297,7 +297,7 @@ const Dashboard = () => {
                                     alignItems: 'center',
                                     padding: 10
                                 }}>
-                                    <div>{item.name}</div>
+                                    <div>{item.ingredient.name}</div>
                                     <button
                                         className="btn btn-danger"
                                         type="button"
