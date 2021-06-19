@@ -28,18 +28,17 @@ const Logins = ({history}) => {
             axios({
               method: 'post',
               url: `/users/login`,
-              data: { email, password }
+              data: { username: email, password }
             }).then(response => {
                 console.log(response.data);
-                if (response.data.user.role !== 'admin') {
-                    setMessage("Oops! Only admin can access this page.");
-                } else {
-                    localStorage.setItem('accessToken', response.data.token);
-                    localStorage.setItem('profileImage', response.data.profileImage);
+                // if (response.data.user.role !== 'admin') {
+                //     setMessage("Oops! Only admin can access this page.");
+                // } else {
+                localStorage.setItem('accessToken', response.data.access_token);
 
-                    setMessage("Authentication successful");
-                    history.push(`/?token=${response.data.token}`);
-                }
+                setMessage("Authentication successful");
+                history.push(`/?token=${response.data.token}`);
+                // }
                 
                 setTimeout(() => {
                   setMessage(null);
