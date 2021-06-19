@@ -33,11 +33,10 @@ const Logins = ({history}) => {
                 localStorage.setItem('accessToken', response.data.access_token);
 
                 setMessage("Authentication successful");
-                history.push(`/?token=${response.data.token}`);
-
                 setTimeout(() => {
                   setMessage(null);
                 }, 3000);
+                window.location.pathname = '/'
             }).catch(error => {
                 setMessage("Oops! Error occured. Try again.");
 
