@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {useHistory, useLocation} from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import { Accordion } from "react-bootstrap";
 import axios from "../../request/request";
@@ -21,7 +21,7 @@ import {
 } from "reactstrap";
 
 const Dashboard = () => {
-  const history = useHistory()
+  const history = useHistory();
 
   const [categories, setCategories] = useState([]);
   const [couponeCode, setCouponeCode] = useState("");
@@ -31,7 +31,7 @@ const Dashboard = () => {
   const [type, setType] = useState("");
   const [price, setPrice] = useState("");
 
-  const [categoryId, setCategoryId] = useState('');
+  const [categoryId, setCategoryId] = useState("");
 
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
@@ -48,19 +48,19 @@ const Dashboard = () => {
       method: "get",
       url: "/order",
     })
-        .then((response) => {
-          setOrder(response && response.data);
-          setLoading(false);
-        })
-        .catch((error) => {
-          setMessage("Oops! Can not connect to the database. Try again.");
-        });
+      .then((response) => {
+        setOrder(response && response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setMessage("Oops! Can not connect to the database. Try again.");
+      });
   };
 
   useEffect(() => {
     const query = new URLSearchParams(location.search);
     setLoading(true);
-    getOrders()
+    getOrders();
 
     setTimeout(() => {
       setMessage(null);
@@ -84,10 +84,6 @@ const Dashboard = () => {
   const onCloseCreateChoiseModal = () => {
     setOpenCreateChoise(false);
   };
-
-
-
-
 
   return (
     <div className="mt-3">
@@ -122,45 +118,78 @@ const Dashboard = () => {
                       </thead>
                       <tbody>
                         {order.map((item, dx) => (
-                            <>
-                          <tr key={item._id}>
-                            <td> {++dx} </td>
-                            <td onClick={()=>history.push(`/products/${item._id}`)}> <div>Name : {item.user.name} </div>
-                              <div>Phone: {item.user.phone} </div>
-                               <h5 style={{marginTop: 10}}>Address:</h5>
+                          <>
+                            <tr key={item._id}>
+                              <td> {++dx} </td>
+                              <td
+                                onClick={() =>
+                                  history.push(`/products/${item._id}`)
+                                }
+                              >
+                                {" "}
+                                <div>Name : {item.user.name} </div>
+                                <div>Phone: {item.user.phone} </div>
+                                <h5 style={{ marginTop: 10 }}>Address:</h5>
                                 <div>
                                   <div>Сity: {item.address.city}</div>
                                   <div>Street: {item.address.street}</div>
                                   <div>House: {item.address.house}</div>
                                   <div>Entrance: {item.address.entrance}</div>
-                                  <div> Apartment: {item.address.apartment}</div>
+                                  <div>
+                                    {" "}
+                                    Apartment: {item.address.apartment}
+                                  </div>
 
                                   <div> Comment: {item.address.comment}</div>
-
                                 </div>
-                            </td>
+                              </td>
 
-                            <th>{item.price}</th>
-                            <th><div>Day: {item?.delivery_time?.day}</div>
-                              <div>Time: {item?.delivery_time?.time}</div></th>
+                              <th>{item.price}</th>
+                              <th>
+                                <div>Day: {item?.delivery_time?.day}</div>
+                                <div>Time: {item?.delivery_time?.time}</div>
+                              </th>
+                            </tr>
+                            <div>
+                              {item?.products.map((item) => {
+                                console.log(item);
+                                return (
+                                  <div
+                                    style={{
+                                      background: "#F3F3F3",
+                                      borderRadius: 12,
+                                      padding: "5px 5px 5px 15px",
+                                      marginBottom: 10,
+                                    }}
+                                  >
+                                    <div
+                                      style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                      }}
+                                    >
+                                      <div>Products:</div>{" "}
+                                      <b style={{ fontSize: 16 }}>
+                                        {item?.choise?.type}
+                                      </b>
+                                    </div>
 
-                          </tr>
-                          <div>{item?.products.map((item)=>{
-                          return  <div style={{
-                            background: '#F3F3F3',
-                            borderRadius: 12,
-                            padding: '5px 5px 5px 15px',
-                            marginBottom: 10
-                          }}>
-                            <div style={{display: 'flex', alignItems: 'center'}}><div >Products:</div> <b style={{fontSize: 16}}>{item.choise.type}</b></div>
-
-                            <div style={{display: 'flex', alignItems: 'center'}}><div >Ingredients:</div>{item.ingredients.map((item)=>{
-                              return <span> {item.name},</span>
-                            })}</div>
-
-                          </div>
-                        })}</div>
-                            </>
+                                    <div
+                                      style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                      }}
+                                    >
+                                      <div>Ingredients:</div>
+                                      {item.ingredients.map((item) => {
+                                        return <span> {item?.name},</span>;
+                                      })}
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </>
                         ))}
                       </tbody>
                     </Table>
@@ -187,12 +216,12 @@ const Dashboard = () => {
                   }}
                 />
                 <Input
-                    style={{marginTop: 10}}
-                    placeholder="Description"
-                    value={description}
-                    onChange={(e) => {
-                      setDescription(e.target.value);
-                    }}
+                  style={{ marginTop: 10 }}
+                  placeholder="Description"
+                  value={description}
+                  onChange={(e) => {
+                    setDescription(e.target.value);
+                  }}
                 />
                 <FormGroup style={{ marginTop: 10 }}>
                   <Input
@@ -204,8 +233,8 @@ const Dashboard = () => {
                     name="select"
                     id="exampleSelect"
                   >
-                    {categories.map((item)=>{
-                      return  <option value={item._id}>{item.name}</option>
+                    {categories.map((item) => {
+                      return <option value={item._id}>{item.name}</option>;
                     })}
                   </Input>
                 </FormGroup>
@@ -214,8 +243,7 @@ const Dashboard = () => {
                   <button
                     className="btn btn-success m-r-10"
                     type="button"
-                    onClick={() => {
-                    }}
+                    onClick={() => {}}
                   >
                     Create
                   </button>
@@ -236,43 +264,41 @@ const Dashboard = () => {
               <div className="product-modal">
                 <h4 className="mt-3">Create choise</h4>
                 <Input
-                    placeholder="Mass"
-                    value={mass}
-                    onChange={(e) => {
-                      setMass(e.target.value);
-                    }}
+                  placeholder="Mass"
+                  value={mass}
+                  onChange={(e) => {
+                    setMass(e.target.value);
+                  }}
                 />
                 <Input
-                    style={{marginTop: 10}}
-                    placeholder="Type"
-                    value={type}
-                    onChange={(e) => {
-                      setType(e.target.value);
-                    }}
+                  style={{ marginTop: 10 }}
+                  placeholder="Type"
+                  value={type}
+                  onChange={(e) => {
+                    setType(e.target.value);
+                  }}
                 />
                 <Input
-                    style={{marginTop: 10}}
-                    placeholder="Price"
-                    value={price}
-                    onChange={(e) => {
-                      setPrice(e.target.value);
-                    }}
+                  style={{ marginTop: 10 }}
+                  placeholder="Price"
+                  value={price}
+                  onChange={(e) => {
+                    setPrice(e.target.value);
+                  }}
                 />
 
                 <div className="addcart-btn mt-4">
                   <button
-                      className="btn btn-success m-r-10"
-                      type="button"
-                      onClick={() => {
-
-                      }}
+                    className="btn btn-success m-r-10"
+                    type="button"
+                    onClick={() => {}}
                   >
                     Create
                   </button>
                   <button
-                      className="btn btn-danger"
-                      type="button"
-                      onClick={onCloseModal}
+                    className="btn btn-danger"
+                    type="button"
+                    onClick={onCloseModal}
                   >
                     Cancel
                   </button>
